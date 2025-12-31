@@ -11,9 +11,6 @@ const testUpdate = async () => {
   console.log(error)
 }
 
-
-
-
 function App() {
   return (
     <div className="App">
