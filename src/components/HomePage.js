@@ -1,6 +1,6 @@
 import { Row } from 'react-bootstrap'
 
-function App() {
+function HomePage() {
 
     return (
         <Row>
@@ -10,3 +10,5 @@ function App() {
         </Row>
     );
 }
+
+export default HomePage;
