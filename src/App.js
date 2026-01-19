@@ -1,49 +1,22 @@
 import React, { useState } from 'react';
-
-import { supabase } from './supabaseClient'
-
+import { Row } from 'react-bootstrap';
+import { Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom';
+import SingUp from './components/SignUp';
+import HomePage from './components/HomePage';
 
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [updated, setUpdated] = useState(false);
 
-  const testUpdate = async () => {
-
-    const { error } = await supabase
-      .from('movies')
-      .update({ title: 'Test update' })
-      .eq('id', 1)
-
-    console.log(error)
-    setLoading(false);
-    setUpdated(true);
-  }
-
-  const testSelect = async () => {
-    const { data, error } = await supabase.from('movies').select('*')
-    if (error) {
-      console.error('Error fetching movies:', error)
-    } else {
-      setMovies(data);
-      setLoading(false);
-    }
-  }
   return (
-    <div className="App">
-      <h1>Welcome to the Store</h1>
-      {loading && <button onClick={testUpdate}>Test Update</button>}
-      {updated && <p>Update completed.</p>}
-      <button onClick={testSelect}>Test Select</button>
-      {movies.length > 0 && (
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/signup" element={<SingUp />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
