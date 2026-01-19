@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Row } from 'react-bootstrap';
 import { Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom';
 import SingUp from './components/SignUp';
 import HomePage from './components/HomePage';
